@@ -1,0 +1,54 @@
+<div class="row">
+  <!-- Market Card Displays -->
+  <div class="col-4">
+    <div class="card marketCard">
+      <div class="pt-1 card-body">
+        <div>
+          <span class="cardHeader">MARKET</span><span class="mb-2 starNote">*prices below shown in USD</span>
+        </div>
+
+        <!-- TODO Market Date Filter -->
+        <form class="d-flex">
+          <input class="form-control mb-1" [(ngModel)]="searchInput"  type="search" name="name" placeholder="Search Currency Name" aria-label="Search" > <!-- (input)="currencySearch(searchInput)" -->
+        </form>
+
+        <div>
+          <span (click)="filterBadges(0)" [ngClass]="downwardTrend ? 'badge bg-secondary assetHover' : 'badge bg-light text-dark assetHover'">Downward Trend</span>  
+          <span (click)="filterBadges(1)" [ngClass]="upwardTrend ? 'badge bg-secondary assetHover m-1' : 'badge bg-light text-dark assetHover m-1'">Upward Trend</span>  
+          <span (click)="filterBadges(2)" [ngClass]="alphabetical ? 'badge bg-secondary assetHover' : 'badge bg-light text-dark assetHover'">Alphabetical</span>
+          <span (click)="filterBadges(3)" [ngClass]="cost ? 'badge bg-secondary assetHover m-1' : 'badge bg-light text-dark assetHover m-1'">Cost</span>
+        </div>
+
+
+        <!-- Asset Card Displays -->
+        <div *ngFor="let asset of allAssets | currencySearchFilter: searchInput">
+          <!-- If currency change has went up in 24hrs show green banner i.e. if the variable 'changePercent24Hr' is positive  -->
+          <!-- If currency change has went down in 24hrs show red banner i.e. if the variable 'changePercent24Hr' is negative  -->
+          <div (click)="displayAsset(asset)" [ngClass]="(asset.changePercent24Hr > 0) ? 'p-2 alert alert-success assetHover' : 'p-2 alert alert-danger assetHover'" role="alert">
+            <div class="row">
+              <div class="col-4">
+                <div class="alert-heading currencyHeader">{{ asset.symbol }}</div><div class="currencySymbol">   {{ asset.name | uppercase }}</div>
+              </div>
+              <div class="col-4 currencyDescription">{{ asset.priceUsd | currency:"USD" : "symbol-narrow"  }}</div>
+              <div class="col-4 currencyDescription">{{ asset.changePercent24Hr | percent: '2.2-3' }}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart Card Displays -->
+  <div class="col-8">
+    <div class="card graphCard">
+      <div class="card-body">{{ assetName }}</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  

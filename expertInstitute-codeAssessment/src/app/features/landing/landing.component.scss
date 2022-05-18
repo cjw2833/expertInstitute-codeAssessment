@@ -1,0 +1,36 @@
+.assetHover:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cardHeader {
+    font-size: 40px;
+    font-weight: 200;
+    text-align: left;
+}
+
+.currencyHeader {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.starNote {
+    //TODO align text right
+    font-size: 10px;
+}
+
+.currencyDescription {
+    font-size: 16px;
+    //TODO vertically align
+}
+
+.currencySymbol {
+    font-size: 12px;
+}
+
+.graphCard {
+    position: fixed;
+}
