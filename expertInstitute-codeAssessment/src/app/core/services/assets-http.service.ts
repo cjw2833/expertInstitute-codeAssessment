@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { routerPaths } from "../constants/router-paths";
-import { Asset } from '../models/asset';
 import { HttpClient } from '@angular/common/http';
+import { Asset } from '../models/asset';
 
 /**
  * Assets HTTP Service
@@ -29,19 +28,16 @@ export class AssetsHttpService {
   /**
    * GET Request to retrieve all assets
    */
-  public getAllAssets(): Observable<any> {
-    return this.httpClient.get<any>(this.baseCoinCapAssetsApiPath+'assets');
+  public getAllAssets(): Observable<Asset[]> {
+    return this.httpClient.get<Asset[]>(this.baseCoinCapAssetsApiPath+'assets');
   }
 
  /**
-   * GET Request to retrieve a specific asset by id
+   * GET Request to retrieve a specific asset by id and time interval(m1, m5, m15, m30, h1, h2, h6, h12, d1)
+   * TODO: Add time interval selection to chart
    */
-//   public getAssetById(): Observable<Assets> {
-//     return this.webappService.httpGet(this.baseApiStatusCenterPath + '/contactInfo').pipe(
-//         catchError(error => this.handleError(error))
-//     );
-//   }
+  public getAssetById(assetId: string, interval: string): Observable<any> {
+    return this.httpClient.get<any>(this.baseCoinCapAssetsApiPath+`assets/${assetId}/history?interval=${interval}`);
+  }
 }
-
-
 

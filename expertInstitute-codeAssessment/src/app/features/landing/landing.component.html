@@ -9,21 +9,19 @@
 
         <!-- TODO Market Date Filter -->
         <form class="d-flex">
-          <input class="form-control mb-1" [(ngModel)]="searchInput"  type="search" name="name" placeholder="Search Currency Name" aria-label="Search" > <!-- (input)="currencySearch(searchInput)" -->
+          <input class="form-control mb-1" [(ngModel)]="searchInput"  type="search" name="name" placeholder="Search Currency Name" aria-label="Search" >
         </form>
 
         <div>
-          <span (click)="filterBadges(0)" [ngClass]="downwardTrend ? 'badge bg-secondary assetHover' : 'badge bg-light text-dark assetHover'">Downward Trend</span>  
-          <span (click)="filterBadges(1)" [ngClass]="upwardTrend ? 'badge bg-secondary assetHover m-1' : 'badge bg-light text-dark assetHover m-1'">Upward Trend</span>  
-          <span (click)="filterBadges(2)" [ngClass]="alphabetical ? 'badge bg-secondary assetHover' : 'badge bg-light text-dark assetHover'">Alphabetical</span>
-          <span (click)="filterBadges(3)" [ngClass]="cost ? 'badge bg-secondary assetHover m-1' : 'badge bg-light text-dark assetHover m-1'">Cost</span>
+          <button type="button" (click)="filterBadges(0)" [ngClass]="alphabetical ? 'btn btn-sm btn-dark assetHover' : 'btn btn-sm btn-outline-dark assetHover'">Alphabetical</button>
+          <button type="button" (click)="filterBadges(1)" [ngClass]="cost ? 'btn btn-sm btn-dark assetHover m-1' : 'btn btn-sm btn-outline-dark assetHover m-1'">Cost</button>
         </div>
 
-
-        <!-- Asset Card Displays -->
-        <div *ngFor="let asset of allAssets | currencySearchFilter: searchInput">
-          <!-- If currency change has went up in 24hrs show green banner i.e. if the variable 'changePercent24Hr' is positive  -->
-          <!-- If currency change has went down in 24hrs show red banner i.e. if the variable 'changePercent24Hr' is negative  -->
+        <!-- Asset Card Displays 
+              NOTE:
+                If currency change has went up in 24hrs show green banner i.e. if the variable 'changePercent24Hr' is positive
+                If currency change has went down in 24hrs show red banner i.e. if the variable 'changePercent24Hr' is negative -->
+        <div *ngFor="let asset of allAssets | currencySearchFilter: searchInput"> <!-- | currencySearchFilter: searchInput : cost : alphabetical-->
           <div (click)="displayAsset(asset)" [ngClass]="(asset.changePercent24Hr > 0) ? 'p-2 alert alert-success assetHover' : 'p-2 alert alert-danger assetHover'" role="alert">
             <div class="row">
               <div class="col-4">
