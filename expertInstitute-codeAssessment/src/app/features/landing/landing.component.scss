@@ -6,7 +6,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.cardHeader {
+.assetHeader {
     font-size: 40px;
     font-weight: 200;
     text-align: left;
@@ -18,13 +18,24 @@
 }
 
 .starNote {
-    //TODO align text right
     font-size: 10px;
+}
+
+.currencyDetails {
+    font-size: 30px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.assetDetails {
+    font-size: 14px;
+    font-weight: 200;
+    text-align: center;
 }
 
 .currencyDescription {
     font-size: 16px;
-    //TODO vertically align
+    text-align: center;
 }
 
 .currencySymbol {
@@ -33,4 +44,9 @@
 
 .graphCard {
     position: fixed;
+}
+
+.candle-chart {
+    height: 400px;
+    width: 800px;
 }

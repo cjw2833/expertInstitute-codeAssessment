@@ -19,10 +19,11 @@ export class CoreService {
   }
 
   /**
-   * Get asset list from CoinCap API.
+   * Get asset price history list from CoinCap API.
    * @param id  string id of asset to retrieve
+   * @param interval string of time intervals of data points
    */
-  public getAssetById(assetId: string, interval: string): Observable<any>  {
+  public getAssetHistory(assetId: string, interval: string): Observable<any>  {
     return this.assetsHttpService.getAssetById(assetId, interval);
   }
 }

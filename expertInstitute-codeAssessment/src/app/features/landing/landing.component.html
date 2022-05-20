@@ -4,28 +4,27 @@
     <div class="card marketCard">
       <div class="pt-1 card-body">
         <div>
-          <span class="cardHeader">MARKET</span><span class="mb-2 starNote">*prices below shown in USD</span>
+          <span class="assetHeader">MARKET</span><span class="mb-2 starNote">*prices below shown in USD</span>
         </div>
 
-        <!-- TODO Market Date Filter -->
         <form class="d-flex">
           <input class="form-control mb-1" [(ngModel)]="searchInput"  type="search" name="name" placeholder="Search Currency Name" aria-label="Search" >
         </form>
 
         <div>
-          <button type="button" (click)="filterBadges(0)" [ngClass]="alphabetical ? 'btn btn-sm btn-dark assetHover' : 'btn btn-sm btn-outline-dark assetHover'">Alphabetical</button>
-          <button type="button" (click)="filterBadges(1)" [ngClass]="cost ? 'btn btn-sm btn-dark assetHover m-1' : 'btn btn-sm btn-outline-dark assetHover m-1'">Cost</button>
+          <button type="button" (click)="filterBadges(0)" class="btn btn-sm assetHover" [ngClass]="alphabetical ? 'btn-dark' : 'btn-outline-dark'">Alphabetical</button>
+          <button type="button" (click)="filterBadges(1)" class="btn btn-sm assetHover m-1" [ngClass]="cost ? 'btn-dark' : 'btn-outline-dark'">Cost</button>
         </div>
 
         <!-- Asset Card Displays 
               NOTE:
                 If currency change has went up in 24hrs show green banner i.e. if the variable 'changePercent24Hr' is positive
                 If currency change has went down in 24hrs show red banner i.e. if the variable 'changePercent24Hr' is negative -->
-        <div *ngFor="let asset of allAssets | currencySearchFilter: searchInput"> <!-- | currencySearchFilter: searchInput : cost : alphabetical-->
+        <div *ngFor="let asset of allAssets | currencySearchFilter: searchInput"> <!-- TODO: | currencySearchFilter: searchInput : cost : alphabetical-->
           <div (click)="displayAsset(asset)" [ngClass]="(asset.changePercent24Hr > 0) ? 'p-2 alert alert-success assetHover' : 'p-2 alert alert-danger assetHover'" role="alert">
             <div class="row">
               <div class="col-4">
-                <div class="alert-heading currencyHeader">{{ asset.symbol }}</div><div class="currencySymbol">   {{ asset.name | uppercase }}</div>
+                <div class="currencyHeader">{{ asset.symbol }}</div><div class="currencySymbol">{{ asset.name | uppercase }}</div>
               </div>
               <div class="col-4 currencyDescription">{{ asset.priceUsd | currency:"USD" : "symbol-narrow"  }}</div>
               <div class="col-4 currencyDescription">{{ asset.changePercent24Hr | percent: '2.2-3' }}</div>
@@ -40,7 +39,64 @@
   <!-- Chart Card Displays -->
   <div class="col-8">
     <div class="card graphCard">
-      <div class="card-body">{{ assetName }}</div>
+      <div class="card-header" [ngClass]="(currentAsset.changePercent24Hr > 0) ? 'text-white bg-success': 'text-white bg-danger'">
+        <div class="row">
+          <div class="col-4">
+            <div class="assetHeader">{{ currentAsset.symbol }}</div><div class="currencyHeader">{{ currentAsset.name | uppercase }}</div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-1 mt-3">
+            <div class="currencyDescription">RANK</div>   <div class="currencyDetails">{{ currentAsset.rank }}</div>
+          </div>
+          <div class="col-3 mt-3">
+            <div class="currencyDescription">CURRENT PRICE</div>   <div class="currencyDetails">{{ currentAsset.priceUsd | currency:"USD" : "symbol-narrow"  }}</div>
+          </div>
+          <div class="col-3 mt-3">
+            <div class="currencyDescription">24HR CHANGE (%)</div>   <div class="currencyDetails">{{ currentAsset.changePercent24Hr | percent: '2.2-3' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <div echarts [options]="options" class="candle-chart"></div>
+            <!-- TODO: <asset-chart-card [assetChartData]="currentAssetPriceHistory"></asset-chart-card> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 mt-3">
+            <!-- TODO: Add chart time intervals radio toggle funtionality -->
+            <div class="btn-group btn-group-sm" role="group">
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+              <label class="btn btn-outline-dark" for="btnradio1">M15</label>
+            
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+              <label class="btn btn-outline-dark" for="btnradio2">M30</label>
+            
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+              <label class="btn btn-outline-dark" for="btnradio3">H1</label>
+
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" >
+              <label class="btn btn-outline-dark" for="btnradio4">H2</label>
+            
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+              <label class="btn btn-outline-dark" for="btnradio5">H6</label>
+            
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+              <label class="btn btn-outline-dark" for="btnradio6">H12</label>
+
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off" >
+              <label class="btn btn-outline-dark" for="btnradio7">D1</label>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="assetDetails">MARKET CAP ($)</div>   <div class="currencyDetails">{{ currentAsset.marketCapUsd | currency:"USD" : "symbol-narrow"  }}</div>
+          </div>
+          <div class="col-3 mt-3">
+            <button type="button" class="btn btn-link currencySymbol" (click)="goToLearnMore()"> LEARN MORE ABOUT {{ currentAsset.name | uppercase }}</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

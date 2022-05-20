@@ -33,10 +33,16 @@ export class AssetsHttpService {
   }
 
  /**
-   * GET Request to retrieve a specific asset by id and time interval(m1, m5, m15, m30, h1, h2, h6, h12, d1)
-   * TODO: Add time interval selection to chart
+   * GET Request to retrieve a specific currency by id and time interval(m1, m5, m15, m30, h1, h2, h6, h12, d1)
    */
   public getAssetById(assetId: string, interval: string): Observable<any> {
+    return this.httpClient.get<any>(this.baseCoinCapAssetsApiPath+`assets/${assetId}/history?interval=${interval}`);
+  }
+
+  /**
+  * GET Request to retrieve a specific currencies price history and time interval(m1, m5, m15, m30, h1, h2, h6, h12, d1)
+  */
+  public getAssetHistory(assetId: string, interval: string): Observable<any> {
     return this.httpClient.get<any>(this.baseCoinCapAssetsApiPath+`assets/${assetId}/history?interval=${interval}`);
   }
 }

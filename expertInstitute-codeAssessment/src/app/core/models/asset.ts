@@ -10,6 +10,7 @@ export interface Asset {
     priceUsd: number;
     changePercent24Hr: number;
     vwap24Hr: number;
+    explorer: string;
   }
 
 /* Data Example
@@ -25,5 +26,5 @@ export interface Asset {
     "priceUsd": "6929.8217756835584756",
     "changePercent24Hr": "-0.8101417214350335",
     "vwap24Hr": "7175.0663247679233209"
-}
+  }
 */
