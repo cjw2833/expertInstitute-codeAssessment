@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const routerPaths = {\n  landing: '',\n  home: 'home',\n  pageUnavailable: 'unavailable'\n};","map":null,"metadata":{},"sourceType":"module"}
