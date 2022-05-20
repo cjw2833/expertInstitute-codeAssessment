@@ -21,9 +21,10 @@ Expert Institute Code Assessment: Cryptocurrency Asset Manager
 Go to https://github.com/cjw2833/expertInstitute-codeAssessment and either CLONE the repository from the github or DOWNLOAD the zip 
     (option can be found from right side of the repository page)
     * Clone can be done by using the command line
-      ```
-      git clone [(repostiory link](https://github.com/cjw2833/expertInstitute-codeAssessment)
-      ```
+ ```
+ git clone [(repostiory link](https://github.com/cjw2833/expertInstitute-codeAssessment)
+ ```
+
 ### Executing program
 
 1. Start by verifying your dependencies align with the dependencies listed above
