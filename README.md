@@ -1,6 +1,8 @@
 # expertInstitute-codeAssessment
 Expert Institute Code Assessment: Cryptocurrency Asset Manager
 
+![alt text](http://[url](https://drive.google.com/file/d/1rvw7ZtPdnq193yZ2o4OiBOmnCl2Fy1Or/view?usp=sharing)/to/img.png)
+
 ## Getting Started
 
 ### Dependencies
