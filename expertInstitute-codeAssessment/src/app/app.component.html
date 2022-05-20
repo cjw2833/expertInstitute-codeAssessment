@@ -1,3 +1,56 @@
-<div class="container mt-5">
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Financial Currency Data Playground</span>
+      <span class="navbar-brand mb-0 h1 justify-content-end">
+        <button type="button" class="btn btn-dark position-relative" data-bs-toggle="modal" data-bs-target="#myAssetModal">
+            MY ASSETS CALCULATOR
+            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+              <span class="visually-hidden">MY ASSETS CALCULATOR</span>
+            </span>
+          </button>
+      </span>
+    </div>
+</nav>
+<!-- TODO: Change to formGroup and move to shared! -->
+<div class="modal fade" id="myAssetModal" tabindex="-1" aria-labelledby="myAssetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myAssetModalId">Calculate My Assets</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- <div class="row">
+                <div class="col-4">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        SELECT CRYPTOCURRENCY
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" value="29043.2209218657363212">Bitcoin</a></li>
+                            <li><a class="dropdown-item" value="1956.0310060793044989">Ethereum</a></li>
+                            <li><a class="dropdown-item" value="0.9966912475664399">Tether</a></li>
+                            <li><a class="dropdown-item" value="0.9863927272344587">USD Coin</a></li>
+                            <li><a class="dropdown-item" value="297.1458660822604452">Binance-Coin</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Enter The Quantity Of Assets You Own">
+                    </div>
+                </div>
+                <div *ngIf="(selection != 0) && (myAssets != 0)" class="col-7">
+                        You own ${{ result }} worth of {{ selection }}!
+                </div>
+            </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="calculateAssets()">Calculate Assets</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container mt-2">
     <router-outlet></router-outlet>
 </div>
